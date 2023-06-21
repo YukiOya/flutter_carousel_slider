@@ -91,6 +91,7 @@ class CarouselSliderState extends State<CarouselSlider>
     carouselState!.options = options;
     carouselState!.itemCount = widget.itemCount;
 
+    pageController?.dispose();
     // pageController needs to be re-initialized to respond to state changes
     pageController = PageController(
       viewportFraction: options.viewportFraction,
@@ -294,8 +295,9 @@ class CarouselSliderState extends State<CarouselSlider>
 
   @override
   void dispose() {
-    super.dispose();
+    pageController?.dispose();
     clearTimer();
+    super.dispose();
   }
 
   @override
